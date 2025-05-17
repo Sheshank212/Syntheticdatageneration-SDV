@@ -90,18 +90,20 @@ This project applies deep generative models — **CTGAN**, **TVAE**, and **Copul
 
 ## Visual Output Examples
 
-| Plot Type | Filename |
-|-----------|----------|
-| SHAP (CTGAN) | `shap_ctgan.png` |
-| SHAP (TVAE) | `shap_tvae.png` |
-| CTGAN Loss | `loss_ctgan.png` |
-| TVAE Loss | `loss_tvae.png` |
-| KDE AGE | `AGE_distribution_comparison.png` |
-| KDE AGE (CTGAN-only) | `ctgan_age_column_plot.png` |
-| KDE AGE (TVAE-only) | `tvae_age_column_plot.png` |
-| KDE AGE (CopulaGAN) | `copulagan_age_plot.png` |
-| ICU Comparison | `ICU_categorical_comparison.png` |
-| PREGNANT Comparison | `PREGNANT_categorical_comparison.png` |
+
+| Plot Type                | Thumbnail Preview |
+|--------------------------|------------------|
+| SHAP (CTGAN)             | [<img src="shap_ctgan.png" width="200"/>](shap_ctgan.png) |
+| SHAP (TVAE)              | [<img src="shap_tvae.png" width="200"/>](shap_tvae.png) |
+| CTGAN Loss               | [<img src="loss_ctgan.png" width="200"/>](loss_ctgan.png) |
+| TVAE Loss                | [<img src="loss_tvae.png" width="200"/>](loss_tvae.png) |
+| KDE AGE (All Models)     | [<img src="AGE_distribution_comparison.png" width="200"/>](AGE_distribution_comparison.png) |
+| KDE AGE (CTGAN only)     | [<img src="ctgan_age_column_plot.png" width="200"/>](ctgan_age_column_plot.png) |
+| KDE AGE (TVAE only)      | [<img src="tvae_age_column_plot.png" width="200"/>](tvae_age_column_plot.png) |
+| KDE AGE (CopulaGAN)      | [<img src="copulagan_age_plot.png" width="200"/>](copulagan_age_plot.png) |
+| ICU Comparison           | [<img src="ICU_categorical_comparison.png" width="200"/>](ICU_categorical_comparison.png) |
+| PREGNANT Comparison      | [<img src="PREGNANT_categorical_comparison.png" width="200"/>](PREGNANT_categorical_comparison.png) |
+
 
 ---
 
