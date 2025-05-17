@@ -91,10 +91,6 @@ This project applies deep generative models — **CTGAN**, **TVAE**, and **Copul
 ## Visual Output Examples
 
 
-### Visual Output Examples
-
-## Visual Output Examples
-
 | Plot Type                      | Thumbnail Preview |
 |-------------------------------|-------------------|
 | SHAP (CTGAN)                  | [![SHAP CTGAN](results/shap_ctgan.png)](results/shap_ctgan.png) |
