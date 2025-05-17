@@ -1,4 +1,4 @@
-# Synthetic Data Generation for COVID-19 & Cardiovascular Data using CTGAN & TVAE
+# Synthetic Data Generation for COVID-19 & Cardiovascular Data using CTGAN, TVAE & CopulaGAN
 
 ## Overview
 
