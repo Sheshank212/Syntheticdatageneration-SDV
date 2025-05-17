@@ -2,98 +2,122 @@
 
 ## Overview
 
-This project applies deep generative models, specifically **CTGAN** and **TVAE**, from the SDV library to generate high-fidelity synthetic healthcare datasets. The goals are to:
+This project applies deep generative models — **CTGAN**, **TVAE**, and **CopulaGAN** — from the SDV library to generate high-fidelity synthetic datasets for healthcare analytics. The main goals include:
 
-* Preserve patient privacy
-* Enable model training without real data exposure
-* Analyze prediction consistency using SHAP
+- Preserving patient privacy  
+- Enabling model training without exposing sensitive real data  
+- Analyzing prediction consistency using SHAP  
 
-Two public datasets are used:
+### Public datasets used:
 
-* COVID-19 patient records (Mexican government via Kaggle)
-* UCI Heart Disease dataset
+- **COVID-19** dataset from Mexican government (via [Kaggle](https://www.kaggle.com/datasets/meirnizri/covid19-dataset))  
+- **UCI Heart Disease** dataset
+
+---
 
 ## Objectives
 
-* Preprocess real-world medical datasets with missing and inconsistent values
-* Generate realistic synthetic datasets using:
+- Handle missing/inconsistent medical data (97/98/99 → NaN)  
+- Generate synthetic data using:  
+  - CTGAN (Conditional Tabular GAN)  
+  - TVAE (Tabular Variational Autoencoder)  
+  - GaussianCopula (baseline comparison for AGE)  
+- Evaluate data quality and realism via:  
+  - **KDE plots** (numerical comparison)  
+  - **Bar plots** (categorical comparison)  
+  - **SHAP** interpretability  
+  - **Random Forest** prediction tests  
 
-  * CTGAN (Conditional Tabular GAN)
-  * TVAE (Tabular Variational Autoencoder)
-  * GaussianCopula (comparison baseline)
-* Evaluate synthetic data using:
-
-  * KDE plots
-  * Bar plots for categorical columns
-  * SHAP interpretability
-* Use Random Forest models to test prediction quality
-* Compare statistical summaries and feature influence
+---
 
 ## Datasets
 
 ### COVID-19 Dataset
 
-* \~1 million records, downsampled to 1000 for experimentation
-* Comorbidities: COPD, Asthma, Hypertension, Cardiovascular, etc.
-* Target: ICU admission
-* Preprocessing:
+- ~1M records; sampled 1000 for efficient experimentation  
+- Comorbidities: COPD, Diabetes, Hypertension, etc.  
+- Target: ICU admission
 
-  * Replaced \[97, 98, 99] with NaNs
-  * Imputed numerical NaNs with median
-  * Clipped Age between 1 and 100
+**Preprocessing**:
+- Replaced 97, 98, 99 with NaN  
+- Imputed numerical NaNs using median  
+- Clipped AGE between 1–100  
+- Label encoding applied for model input  
 
 ### UCI Heart Disease Dataset
 
-* Attributes: Cholesterol, Age, Blood Pressure, etc.
-* Target: Heart disease diagnosis
+- Attributes: Cholesterol, Age, Blood Pressure, etc.  
+- Target: Heart disease classification  
+
+---
 
 ## Methodology
 
 ### Preprocessing
 
-* Uniform missing value treatment
-* Label encoding for SHAP & model training
-* Separate preprocessing pipelines for COVID and Cardio data
+- Uniform NaN handling across datasets  
+- Label encoding for model input and SHAP compatibility  
+- Separate pipelines for COVID and Cardio datasets  
 
 ### Synthetic Data Generation
 
-* **CTGAN**: trained for 50 epochs with batch size 1000
-* **TVAE**: trained separately and compared with CTGAN
-* **CopulaGAN**: included for AGE column comparison
+- **CTGAN**: Trained for 50+ epochs with batch size 1000  
+- **TVAE**: Trained separately and compared with CTGAN  
+- **CopulaGAN**: Used for baseline distribution alignment (AGE column)  
 
-### Evaluation Techniques
+---
 
-* **Statistical Summaries**: mean, std, min, max
-* **KDE & Bar Plots**: Compare real vs synthetic distributions
-* **SHAP Analysis**:
+## Evaluation Techniques
 
-  * Ran Random Forest classifiers on synthetic data
-  * Visualized feature importance for ICU prediction
+- **Statistical Summaries**: mean, std, min, max  
+- **KDE Plots**: AGE comparisons (Real vs CTGAN vs TVAE vs CopulaGAN)  
+- **Bar Plots**: ICU and PREGNANT categorical columns  
+- **SHAP Interpretability**:  
+  - Random Forest models trained on synthetic datasets  
+  - CTGAN SHAP → AGE, DIABETES, INTUBED among top factors  
+  - TVAE SHAP → INTUBED dominant; DIABETES underweighted  
 
-## Visual Output Examples
-
-* `AGE_distribution_comparison.png`
-* `ICU_categorical_comparison.png`
-* `PREGNANT_categorical_comparison.png`
-* `shap_ctgan.png`, `shap_tvae.png`
-* `loss_ctgan.png`, `loss_tvae.png`
+---
 
 ## Key Observations
 
-* CTGAN performed better on preserving distribution structure
-* SHAP values for CTGAN highlighted **INTUBED**, **PNEUMONIA**, and **AGE**
-* TVAE captured broader trends, sometimes underweighted expected comorbidities
+- **CTGAN** produced more balanced SHAP contributions across clinical factors  
+- **TVAE** emphasized INTUBED but downplayed AGE and DIABETES  
+- **AGE** distribution closer to real data with **TVAE**, but **CTGAN** preserved overall diversity better  
+- **CopulaGAN** aligned reasonably with the real distribution for AGE  
+
+---
+
+## Visual Output Examples
+
+| Plot Type | Filename |
+|-----------|----------|
+| SHAP (CTGAN) | `shap_ctgan.png` |
+| SHAP (TVAE) | `shap_tvae.png` |
+| CTGAN Loss | `loss_ctgan.png` |
+| TVAE Loss | `loss_tvae.png` |
+| KDE AGE | `AGE_distribution_comparison.png` |
+| KDE AGE (CTGAN-only) | `ctgan_age_column_plot.png` |
+| KDE AGE (TVAE-only) | `tvae_age_column_plot.png` |
+| KDE AGE (CopulaGAN) | `copulagan_age_plot.png` |
+| ICU Comparison | `ICU_categorical_comparison.png` |
+| PREGNANT Comparison | `PREGNANT_categorical_comparison.png` |
+
+---
 
 ## File Structure
 
-```
 Repo1/
 ├── datasets/
-│   ├── Covid_Data.csv
-│   └── heart_disease_dataset.csv
+│ ├── Covid_Data.csv
+│ └── heart_disease_dataset.csv
 ├── ctgan_tvae_covid_cardio.py
 ├── results/
-│   ├── *.png
+│ ├── shap_ctgan.png
+│ ├── shap_tvae.png
+│ ├── loss_ctgan.png
+│ ├── loss_tvae.png
+│ ├── *.png
 ├── Covid_Synthetic_Data_CTGAN.csv
 ├── Covid_Synthetic_Data_TVAE.csv
 ├── Heart_Synthetic_Data_CTGAN.csv
@@ -101,20 +125,29 @@ Repo1/
 ├── README.md
 ├── requirements.txt
 └── .gitignore
-```
+
+yaml
+Copy
+Edit
+
+---
 
 ## Tools Used
 
-* Python, Pandas, NumPy
-* SDV (CTGAN, TVAE, GaussianCopula)
-* SHAP, LIME (exploratory)
-* Plotly, Seaborn, Matplotlib
-* Scikit-learn (Random Forest)
+- **Python** (Pandas, NumPy)  
+- **SDV** (CTGAN, TVAE, GaussianCopula)  
+- **SHAP**, **LIME** (exploratory)  
+- **Plotly**, **Matplotlib**, **Seaborn**  
+- **Scikit-learn** (Random Forest)  
+
+---
 
 ## Authors
 
-* Sheshank Priyadarshi
-* Parth Chopra
+- **Sheshank Priyadarshi**  
+- **Parth Chopra**  
+
+---
 
 ## License
 
