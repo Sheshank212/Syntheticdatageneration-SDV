@@ -93,18 +93,19 @@ This project applies deep generative models — **CTGAN**, **TVAE**, and **Copul
 
 ### Visual Output Examples
 
-| Plot Type                  | Thumbnail Preview                         |
-|---------------------------|-------------------------------------------|
-| SHAP (CTGAN)              | ![](./shap_ctgan.png)                     |
-| SHAP (TVAE)               | ![](./shap_tvae.png)                      |
-| CTGAN Loss                | ![](./loss_ctgan.png)                     |
-| TVAE Loss                 | ![](./loss_tvae.png)                      |
-| KDE AGE (All Models)      | ![](./AGE_distribution_comparison.png)    |
-| KDE AGE (CTGAN only)      | ![](./ctgan_age_column_plot.png)         |
-| KDE AGE (TVAE only)       | ![](./tvae_age_column_plot.png)          |
-| KDE AGE (CopulaGAN)       | ![](./copulagan_age_plot.png)            |
-| ICU Comparison            | ![](./ICU_categorical_comparison.png)    |
-| PREGNANT Comparison       | ![](./PREGNANT_categorical_comparison.png)|
+## Visual Output Examples
+
+| Plot Type                      | Thumbnail Preview |
+|-------------------------------|-------------------|
+| SHAP (CTGAN)                  | [![SHAP CTGAN](results/shap_ctgan.png)](results/shap_ctgan.png) |
+| SHAP (TVAE)                   | [![SHAP TVAE](results/shap_tvae.png)](results/shap_tvae.png) |
+| CTGAN Loss                    | [![CTGAN Loss](results/loss_ctgan.png)](results/loss_ctgan.png) |
+| KDE AGE (CTGAN only)          | [![CTGAN AGE](results/ctgan_age_covid.png)](results/ctgan_age_covid.png) |
+| KDE AGE (TVAE only)           | [![TVAE AGE](results/tvae_age_covid.png)](results/tvae_age_covid.png) |
+| KDE AGE (CopulaGAN)           | [![CopulaGAN AGE](results/copula_age_covid.png)](results/copula_age_covid.png) |
+| KDE AGE (All Models)          | [![AGE Distribution](results/AGE_distribution_comparison.png)](results/AGE_distribution_comparison.png) |
+| ICU Comparison                | [![ICU Comparison](results/ICU_categorical_comparison.png)](results/ICU_categorical_comparison.png) |
+| PREGNANT Comparison           | [![Pregnant Comparison](results/PREGNANT_categorical_comparison.png)](results/PREGNANT_categorical_comparison.png) |
 
 
 
