@@ -105,19 +105,21 @@ This project applies deep generative models — **CTGAN**, **TVAE**, and **Copul
 
 ---
 
+
 ## File Structure
 
+```
 Repo1/
 ├── datasets/
-│ ├── Covid_Data.csv
-│ └── heart_disease_dataset.csv
+│   ├── Covid_Data.csv
+│   └── heart_disease_dataset.csv
 ├── ctgan_tvae_covid_cardio.py
 ├── results/
-│ ├── shap_ctgan.png
-│ ├── shap_tvae.png
-│ ├── loss_ctgan.png
-│ ├── loss_tvae.png
-│ ├── *.png
+│   ├── shap_ctgan.png
+│   ├── shap_tvae.png
+│   ├── loss_ctgan.png
+│   ├── loss_tvae.png
+│   └── *.png
 ├── Covid_Synthetic_Data_CTGAN.csv
 ├── Covid_Synthetic_Data_TVAE.csv
 ├── Heart_Synthetic_Data_CTGAN.csv
@@ -125,7 +127,7 @@ Repo1/
 ├── README.md
 ├── requirements.txt
 └── .gitignore
-
+```
 
 ---
 
