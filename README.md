@@ -126,9 +126,6 @@ Repo1/
 ├── requirements.txt
 └── .gitignore
 
-yaml
-Copy
-Edit
 
 ---
 
