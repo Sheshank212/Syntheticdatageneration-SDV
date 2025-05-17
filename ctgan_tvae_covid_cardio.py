@@ -29,6 +29,9 @@ from sdv.single_table import CTGANSynthesizer
 import os
 # %%
 
+# Setup results directory
+results_dir = "results"
+os.makedirs(results_dir, exist_ok=True)
 
 # Load dataset
 fnpath = 'datasets'
@@ -91,6 +94,7 @@ pio.renderers.default = 'browser'
 ctgan_synthesizer.get_loss_values()
 fig = ctgan_synthesizer.get_loss_values_plot()
 fig.update_layout(title="CTGAN Training Loss Over Epochs for Covid")
+fig.write_image(os.path.join(results_dir, "loss_ctgan.png"))
 fig.show()
 
 # %%
@@ -126,6 +130,7 @@ fig = get_column_plot(
     column_name='AGE' # Change coloumn name to visualize different coloumns
 )
 fig.update_layout(title="CTGAN data for covid AGE column")
+fig.write_image(os.path.join(results_dir, "ctgan_age_covid.png"))
 fig.show()
 
 
@@ -186,6 +191,7 @@ fig = get_column_plot(
     column_name='AGE' #Change coloumn name for different coloumns
 )
 fig.update_layout(title="TVAE Covid data AGE")
+fig.write_image(os.path.join(results_dir, "tvae_age_covid.png"))
 fig.show()
 
 
@@ -211,6 +217,7 @@ fig = get_column_plot(
     column_name='AGE' #Change coloumn name for different coloumns
 )
 fig.update_layout(title="CopulaGANSynthesizer Covid data AGE")
+fig.write_image(os.path.join(results_dir, "copula_age_covid.png"))
 fig.show()
 
 # %%
@@ -243,7 +250,7 @@ shap_values_ctgan = explainer_ctgan(X_test_ctgan)
 plt.title("SHAP Summary Plot – CTGAN")
 shap.plots.bar(shap_values_ctgan[:, :, 1], show=False)
 plt.tight_layout()
-plt.savefig("shap_ctgan.png")
+plt.savefig(os.path.join(results_dir, "shap_ctgan.png"))
 plt.show()
 
 # RandomForest on TVAE data
@@ -261,7 +268,7 @@ shap_values_tvae = explainer_tvae(X_test_tvae)
 plt.title("SHAP Summary Plot – TVAE")
 shap.plots.bar(shap_values_tvae[:, :, 1], show=False)
 plt.tight_layout()
-plt.savefig("shap_tvae.png")
+plt.savefig(os.path.join(results_dir, "shap_tvae.png"))
 plt.show()
 
 # --- Plot Comparison: Real vs CTGAN vs TVAE ---
@@ -276,7 +283,7 @@ def plot_numerical_distribution(column, real, ctgan, tvae):
     plt.ylabel("Density")
     plt.legend()
     plt.tight_layout()
-    plt.savefig(f"{column}_distribution_comparison.png")
+    plt.savefig(os.path.join(results_dir, "AGE_distribution_comparison.png"))
     plt.show()
 
 def plot_categorical_distribution(column, real, ctgan, tvae):
@@ -296,7 +303,7 @@ def plot_categorical_distribution(column, real, ctgan, tvae):
     sns.barplot(data=df_plot, x="Category", y="Proportion", hue="Dataset")
     plt.title(f"Categorical Comparison: {column}")
     plt.tight_layout()
-    plt.savefig(f"{column}_categorical_comparison.png")
+    plt.savefig(os.path.join(results_dir, f"{column}_categorical_comparison.png"))
     plt.show()
 
 # Example comparisons
